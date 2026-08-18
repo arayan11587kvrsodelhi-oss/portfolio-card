@@ -3,124 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aryan Sharma | Profile Card</title>
+    <title>Aryan Sharma | Developer Portfolio Card</title>
 
-    <!-- Main CSS -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="2.css">
     <link rel="stylesheet" href="electric-border.css">
     <link rel="stylesheet" href="BorderGlow.css">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
 <body>
 
-<div class="card"
-     data-electric-border
-     data-border-glow
-     data-color="#7df9ff"
-     data-speed="1"
-     data-chaos="0.12"
-     data-radius="24"
-     data-colors="#c084fc,#f472b6,#38bdf8">
+    <!-- Background Layer with Grid Mesh & Ambient Lighting -->
+    <div class="bg-canvas">
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-glow bg-glow-2"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-noise"></div>
+    </div>
 
-    <div class="eb-content">
+    <!-- Main Card Container -->
+    <main class="card-container">
 
-        <!-- Profile Image -->
-        <div class="profile-container">
-            <img src="images/aryanpic.jpeg"
-                 alt="Aryan Sharma"
-                 class="profile-pic">
-        </div>
+        <div class="card"
+             data-electric-border
+             data-border-glow
+             data-color="#38bdf8"
+             data-speed="1"
+             data-chaos="0.12"
+             data-radius="28"
+             data-colors="#c084fc,#f472b6,#38bdf8">
 
-        <!-- Name -->
-        <h2>Aryan Sharma</h2>
+            <div class="eb-content">
 
-        <!-- Title -->
-        <div class="title">
-            TIPS BCA STUDENT
-        </div>
+                <!-- Dynamic Light Reflection Surface -->
+                <div class="card-shine" aria-hidden="true"></div>
 
-        <!-- Description -->
-        <div class="description">
-            <p>
-                Building modern, responsive web applications.
-            </p>
-        </div>
+                <!-- Top Header Bar -->
+                <header class="card-header">
+                    <div class="status-badge" title="Status: Open for opportunities">
+                        <span class="status-dot"></span>
+                        <span class="status-text">AVAILABLE FOR PROJECTS</span>
+                    </div>
+                    <div class="card-index-tag">DEV // 2026</div>
+                </header>
 
-        <!-- Skills -->
-        <div class="skills">
+                <!-- Profile Hero Section -->
+                <section class="profile-hero">
+                    <div class="profile-container">
+                        <div class="profile-glow"></div>
+                        <div class="profile-ring"></div>
+                        <img src="images/aryanpic.jpeg"
+                             alt="Aryan Sharma - Full Stack Developer Profile Picture"
+                             class="profile-pic"
+                             loading="eager">
+                    </div>
 
-            <h3>Skills</h3>
+                    <h1 class="name">Aryan Sharma</h1>
 
-            <div class="skill-tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-                <span>Node.js</span>
-                <span>Git</span>
-                <span>GitHub</span>
+                    <div class="title-badge">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>TIPS BCA STUDENT</span>
+                    </div>
+
+                    <p class="description">
+                        Building modern, responsive web applications with aesthetic precision and clean performance.
+                    </p>
+                </section>
+
+                <!-- Skills Section -->
+                <section class="skills-section">
+                    <div class="section-label">
+                        <i class="fa-solid fa-code"></i>
+                        <span>TECH STACK</span>
+                    </div>
+
+                    <div class="skill-tags">
+                        <div class="skill-pill" data-skill="html">
+                            <i class="fa-brands fa-html5 skill-icon"></i>
+                            <span>HTML</span>
+                        </div>
+                        <div class="skill-pill" data-skill="css">
+                            <i class="fa-brands fa-css3-alt skill-icon"></i>
+                            <span>CSS</span>
+                        </div>
+                        <div class="skill-pill" data-skill="js">
+                            <i class="fa-brands fa-js skill-icon"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-pill" data-skill="node">
+                            <i class="fa-brands fa-node-js skill-icon"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="skill-pill" data-skill="git">
+                            <i class="fa-brands fa-git-alt skill-icon"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-pill" data-skill="github">
+                            <i class="fa-brands fa-github skill-icon"></i>
+                            <span>GitHub</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Info Section -->
+                <section class="info-section">
+                    <a href="tel:8076233501" class="info-card" title="Call Aryan Sharma">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="info-text">
+                            <span class="info-label">PHONE</span>
+                            <span class="info-value">8076233501</span>
+                        </div>
+                    </a>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="info-text">
+                            <span class="info-label">LOCATION</span>
+                            <span class="info-value">New Delhi, India</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Social Links -->
+                <section class="socials">
+                    <a href="https://github.com/arayan11587kvrsodelhi-oss"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="social-link"
+                       aria-label="GitHub Profile">
+                        <i class="fab fa-github"></i>
+                        <span class="social-tooltip">GitHub</span>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/aryan-sharma-7681a3380/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="social-link"
+                       aria-label="LinkedIn Profile">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span class="social-tooltip">LinkedIn</span>
+                    </a>
+
+                    <a href="https://www.instagram.com/aryan._.5harma/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="social-link"
+                       aria-label="Instagram Profile">
+                        <i class="fab fa-instagram"></i>
+                        <span class="social-tooltip">Instagram</span>
+                    </a>
+
+                    <a href="mailto:arayan11587kvrsodelhi@gmail.com"
+                       class="social-link"
+                       aria-label="Send Email">
+                        <i class="fas fa-envelope"></i>
+                        <span class="social-tooltip">Email</span>
+                    </a>
+                </section>
+
+                <!-- CTA Action Buttons -->
+                <footer class="cta-section">
+                    <a href="https://arayan11587kvrsodelhi-oss.github.io/aryan-portfolio-cinematic/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn btn-primary cta-btn">
+                        <span>View Portfolio</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square btn-icon"></i>
+                    </a>
+
+                    <a href="mailto:arayan11587kvrsodelhi@gmail.com"
+                       class="btn btn-secondary cta-btn">
+                        <i class="fa-solid fa-paper-plane btn-icon-left"></i>
+                        <span>Contact Me</span>
+                    </a>
+                </footer>
+
             </div>
 
         </div>
 
-        <!-- Contact -->
-        <div class="info">
-             <p>
-                <strong>Phone</strong><br>
-                8076233501
-            </p>
-            <p>
-                <strong>Location</strong><br>
-                New Delhi, India
-            </p>
+    </main>
 
-        </div>
-
-        <!-- Social Icons -->
-        <div class="socials">
-
-            <a href="https://www.linkedin.com/in/aryan-sharma-7681a3380/"
-               target="_blank"
-               title="LinkedIn">
-
-                <i class="fab fa-linkedin"></i>
-
-            </a>
-
-            <a href="mailto:arayan11587kvrsodelhi@gmail.com"
-               title="Email">
-
-                <i class="fas fa-envelope"></i>
-
-            </a>
-
-            <a href="https://www.instagram.com/aryan._.5harma/"
-               target="_blank"
-               title="Instagram">
-
-                <i class="fab fa-instagram"></i>
-
-            </a>
-
-            <a href="https://github.com/arayan11587kvrsodelhi-oss"
-               target="_blank"
-               title="GitHub">
-
-                <i class="fab fa-github"></i>
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-<script src="electric-border.js"></script>
-<script src="BorderGlow.js"></script>
+    <!-- Scripts -->
+    <script src="electric-border.js"></script>
+    <script src="BorderGlow.js"></script>
+    <script src="card-interactions.js"></script>
 
 </body>
 </html>

@@ -184,6 +184,7 @@ window.ElectricBorder = ElectricBorder;
 
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-electric-border]').forEach((el) => {
+    if (el.querySelector('.eb-canvas-container')) return;
     new ElectricBorder(el, {
       color: el.dataset.color || '#7df9ff',
       speed: parseFloat(el.dataset.speed || '1'),

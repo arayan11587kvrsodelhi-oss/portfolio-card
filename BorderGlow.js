@@ -74,6 +74,7 @@
     }, options || {});
 
     const card = el;
+    if (card.querySelector('.border-glow-inner')) return;
     card.classList.add('border-glow-card');
     const inner = document.createElement('div');
     inner.className = 'border-glow-inner';
