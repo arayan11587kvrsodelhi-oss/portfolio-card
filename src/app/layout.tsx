@@ -1,33 +1,87 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+function getSiteUrl(): URL {
+  const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  const vercelUrl = process.env.VERCEL_URL?.trim();
+
+  // Prefer the explicitly configured production URL.
+  if (configuredUrl) {
+    try {
+      return new URL(configuredUrl);
+    } catch {
+      // Fall through to the Vercel URL / localhost fallback.
+    }
+  }
+
+  // Vercel automatically provides VERCEL_URL during builds/deployments.
+  if (vercelUrl) {
+    try {
+      return new URL(`https://${vercelUrl}`);
+    } catch {
+      // Fall through to localhost.
+    }
+  }
+
+  // Safe local-development fallback.
+  return new URL('http://localhost:3000');
+}
+
+const siteUrl = getSiteUrl();
+const siteUrlString = siteUrl.toString().replace(/\/$/, '');
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: siteUrl,
+
   title: 'Aryan Sharma | Developer Portfolio Card',
+
   description:
     'Aryan Sharma — TIPS BCA student building modern, responsive web applications with aesthetic precision and clean performance.',
-  keywords: ['Aryan Sharma', 'portfolio', 'developer', 'web developer', 'Next.js', 'BCA'],
+
+  keywords: [
+    'Aryan Sharma',
+    'portfolio',
+    'developer',
+    'web developer',
+    'Next.js',
+    'BCA',
+  ],
+
   authors: [{ name: 'Aryan Sharma' }],
+
   openGraph: {
     title: 'Aryan Sharma | Developer Portfolio Card',
+
     description:
       'Building modern, responsive web applications with aesthetic precision and clean performance.',
-    url: siteUrl,
+
+    url: siteUrlString,
+
     siteName: 'Aryan Sharma — Portfolio Card',
-    images: [{ url: '/images/aryanpic.jpeg', width: 1200, height: 1200, alt: 'Aryan Sharma' }],
+
+    images: [
+      {
+        url: '/images/aryanpic.jpeg',
+        width: 1200,
+        height: 1200,
+        alt: 'Aryan Sharma',
+      },
+    ],
+
     type: 'website',
   },
+
   twitter: {
     card: 'summary',
+
     title: 'Aryan Sharma | Developer Portfolio Card',
+
     description:
       'Building modern, responsive web applications with aesthetic precision and clean performance.',
+
     images: ['/images/aryanpic.jpeg'],
   },
+
   icons: {
     icon: '/favicon.ico',
   },
@@ -40,24 +94,36 @@ export const viewport: Viewport = {
   colorScheme: 'dark',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+
         {/* eslint-disable-next-line @next/next/no-page-custom-font -- App Router loads
             these on every route via the root layout; the rule targets pages/_document.js. */}
         <link
           href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
+
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
           referrerPolicy="no-referrer"
         />
       </head>
+
       <body>
         {/* Background atmosphere layer — same grid mesh + ambient lighting */}
         <div className="bg-canvas" aria-hidden="true">
