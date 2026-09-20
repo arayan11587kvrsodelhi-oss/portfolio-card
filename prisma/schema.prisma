@@ -1,0 +1,78 @@
+// Prisma schema for the portfolio-card full-stack app.
+// PostgreSQL + Prisma ORM. All fields map to real portfolio data.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Single profile row for the portfolio owner.
+model Profile {
+  id           String   @id @default(cuid())
+  slug         String   @unique @default("aryan-sharma")
+  name         String
+  title        String
+  bio          String
+  location     String
+  phone        String?
+  email        String
+  availability String
+  profileImage String
+  githubUrl    String?
+  linkedinUrl  String?
+  instagramUrl String?
+  portfolioUrl String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("profiles")
+}
+
+/// Tech stack pills shown on the card.
+model Skill {
+  id       String @id @default(cuid())
+  name     String
+  icon     String
+  category String @default("TECH STACK")
+  color    String?
+  order    Int    @default(0)
+
+  @@index([order])
+  @@map("skills")
+}
+
+/// Portfolio projects (empty until real projects are added — never invented).
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  techStack   String[]
+  githubUrl   String?
+  liveUrl     String?
+  image       String?
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([order])
+  @@map("projects")
+}
+
+/// Messages submitted through the public contact form.
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  ipHash    String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@map("contact_messages")
+}

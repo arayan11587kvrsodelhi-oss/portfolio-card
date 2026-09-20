@@ -1,0 +1,41 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# next.js
+.next/
+out/
+build/
+next-env.d.ts
+
+# production
+dist/
+
+# env — NEVER commit secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# local dev database (scripts/dev-db.mjs) — never commit
+.pgdata/
+
+# testing & coverage
+coverage/
+
+# misc
+.DS_Store
+Thumbs.db
+*.pem
+.vercel
+.idea/
+*.tsbuildinfo

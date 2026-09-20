@@ -1,3 +1,9 @@
+/* ============================================================
+   Global styles — ported from the original 2.css
+   Preserves the exact design system: variables, background
+   atmosphere, card, header, profile, skills, info, socials, CTA.
+   ============================================================ */
+
 /* Reset & Base Variables */
 :root {
   --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -23,7 +29,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   min-height: 100vh;
   background-color: var(--bg-dark);
@@ -115,7 +122,6 @@ html, body {
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   position: relative;
   isolation: isolate;
-  padding: 28px 24px;
   text-align: center;
   transform-style: preserve-3d;
   will-change: transform;
@@ -128,18 +134,48 @@ html, body {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  padding: 28px 24px;
 }
 
-/* Dynamic Cursor Reflection */
+/* Tilt target — the element that receives the 3D transform. */
+.tilt-target {
+  position: relative;
+  width: 100%;
+  border-radius: inherit;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Disable tilt transform on touch / coarse pointers (matches original). */
+@media (hover: none) or (pointer: coarse) {
+  .tilt-target {
+    transform: none !important;
+  }
+}
+
+/* Dynamic Cursor Reflection.
+   Sits behind the card content (z-index 0) so it can never intercept hit
+   testing on buttons/links — it is a decorative overlay only. */
 .card-shine {
   position: absolute;
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
   opacity: 0;
   transition: opacity 0.3s ease;
   mix-blend-mode: overlay;
+}
+
+/* Keep all interactive/content sections above the shine layer. */
+.card-header,
+.profile-hero,
+.skills-section,
+.info-section,
+.socials,
+.cta-section {
+  position: relative;
+  z-index: 2;
 }
 
 /* Header Bar */
@@ -262,6 +298,7 @@ html, body {
   margin-bottom: 6px;
   background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -330,7 +367,6 @@ html, body {
   font-weight: 500;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: default;
-  backdrop-filter: blur(8px);
   will-change: transform;
 }
 
@@ -558,7 +594,10 @@ html, body {
 }
 
 /* Accessibility Focus Outline */
-a:focus-visible, button:focus-visible {
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
   outline: 2px solid var(--accent-cyan);
   outline-offset: 3px;
 }
@@ -570,8 +609,11 @@ a:focus-visible, button:focus-visible {
   }
 
   .card {
-    padding: 22px 16px;
     border-radius: 22px;
+  }
+
+  .card .eb-content {
+    padding: 22px 16px;
   }
 
   .name {
@@ -609,7 +651,9 @@ a:focus-visible, button:focus-visible {
 
 /* Reduced Motion Preference */
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -618,5 +662,15 @@ a:focus-visible, button:focus-visible {
 
   .bg-glow {
     animation: none;
+  }
+}
+
+/* Disable entrance/magnetic inline transforms under reduced motion
+   (handled in JS, this is the CSS safety net). */
+@media (prefers-reduced-motion: reduce) {
+  .animate-in,
+  .magnetic {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
